@@ -1,0 +1,52 @@
+<div class="container text-start">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-link text-dark border-0" (click)="toggleDiv()">Cierre del día</button>
+      </div>
+    </div>
+  
+    <div class="mt-0 pt-0" [ngClass]="{'d-none': !showDiv(), 'd-block': showDiv()}">
+      <div class="card border-0">
+        <div class="card-body mt-0 pt-0">
+          <div class="btn-group mb-2">
+            <button type="btn" class="btn btn-primary" (click)="verContabilidad()">Ver Contabilidad</button>
+            <button type="btn" class="btn btn-primary" (click)="cerrarContabilidad()">Cerrar Contabilidad</button>
+            
+          </div>
+            <table class="table table-hover table-striped table-sm">
+              <thead>
+                <tr class="table-primary">
+                  <th scope="col">Factura</th>
+                  <th scope="col">Total</th>
+                  <th scope="col">Descuento</th>
+                  <th scope="col">Iva</th>
+                  <th scope="col">Total Neto</th>
+                </tr>
+              </thead>
+              <tbody>
+              @if (facturas(); as facturas) { 
+                <tr *ngFor="let factura of facturas" [attr.data-id]="factura.id">
+                  <td>{{factura.id}}</td>
+                  <td>$ {{factura.total}}</td>
+                  <td>$ {{factura.total_descuento}}</td>
+                  <td>$ {{factura.total_iva}}</td>
+                  <td>$ {{factura.total_neto}}</td>
+                </tr>
+              }
+              </tbody>
+              @if(total(); as contabilidad){
+                <tfoot>
+                  <td>Totales</td>
+                  <td>$ {{contabilidad.total}}</td>
+                  <td>$ {{contabilidad.total_descuento}}</td>
+                  <td>$ {{contabilidad.total_iva}}</td>
+                  <td>$ {{contabilidad.total_neto}}</td>
+                </tfoot>
+              }
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  

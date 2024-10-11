@@ -1,0 +1,40 @@
+<table class="table table-hover table-striped table-sm">
+    <thead>
+      <tr class="table-primary">
+        <th scope="col">Nombre</th>
+        <th scope="col">Precio</th>
+        <th scope="col">iva</th>
+        <th scope="col">Descuento</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Total</th>
+        <th scope="col">Stock</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+        @if ((data | async); as productos) { 
+      <tr *ngFor="let producto of productos" [attr.data-id]="producto.id">
+        <td>{{producto.nombre}}</td>
+        <td>{{producto.precio_base}}</td>
+        <td>%{{producto.iva}}</td>
+        <td>%{{producto.descuento}}</td>
+        <td>
+           <input 
+            #cantidadInput
+            type="number" 
+            [(ngModel)]="producto.cantidad" 
+            (ngModelChange)="actualizarCantidad(producto.id, cantidadInput.value)"
+            min="0" 
+            [attr.max]="producto.enStock" 
+          />
+        </td>
+        <td>{{calcularTotal(producto)}}</td>
+        <td>{{producto.enStock}}</td>
+        <td>
+          <button class="btn btn-danger btn-sm" (click)="eliminarProducto(producto.id)">X</button>
+        </td>
+      </tr>
+    }
+    </tbody>
+  </table>
+  
