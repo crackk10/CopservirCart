@@ -48,8 +48,9 @@
         </div>
         <div class="col-lg-3 col-md-4 col-sm-6">
           <div class="btn-group">
-            <button type="button" class="btn btn-primary">Cliente</button>
-            <button type="button" class="btn btn-primary">Factura</button>
+            
+            <button (click)="openModal('Modulo de clientes','',0)" type="button" class="btn btn-primary">Cliente</button>
+            <button (click)="openModal('Modulo de formas de pago','',1)"type="button" class="btn btn-primary">Factura</button>
           </div>
         </div>
       </div>
@@ -57,3 +58,20 @@
   </div>
 </div>
 
+            
+<app-modal controlado (emmiter)=accionAlGuardar($event)>
+  @switch (switchModal) {
+    @case (0) {
+      <p>
+        Aqui se inserta el modulo para buscar Clientes y se actualiza 
+        mediante un servicio
+      </p>
+    }
+    @case (1) {
+      <p>
+        Aqui se inserta el modulo para actualizar el tipo de pago y el  
+        tipo de servicio, tambien se puede guardar la info mediante un servicio
+      </p>
+    }
+  }
+</app-modal>
