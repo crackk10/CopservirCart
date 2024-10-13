@@ -1,14 +1,15 @@
 import {CommonModule} from "@angular/common";
-import {Component, inject, input, signal} from "@angular/core";
+import {Component, inject, input, signal, ViewChild} from "@angular/core";
 import {FormsModule,ReactiveFormsModule,} from "@angular/forms";
 import {ProductoService} from "../../core/services/producto.service";
 import {CartService} from "../../core/services/cart.service";
 import { Producto } from "../../core/interfaces/req-producto.interface";
+import { ModalComponent } from "../../core/shared/components/modal/modal.component";
 
 @Component({
   selector: "app-formulario-cart",
   standalone: true,
-  imports: [ReactiveFormsModule, FormsModule, CommonModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule, ModalComponent],
   templateUrl: "./formulario-cart.component.html",
   styles: ``,
 })
@@ -39,5 +40,16 @@ export class FormularioCartComponent  {
   resetForm(){
     this.filtro = ''
     this.formInvalid.set(false)
+  }
+
+  swicthModal = signal<number>(0)
+
+  @ViewChild(ModalComponent) modal?:ModalComponent
+  openModal(titulo:string = '', contenido:string ='', switchContenido : number){
+    this.modal?.openModal(titulo, contenido)
+    this.swicthModal.set(switchContenido)
+  }
+  accionAlGuardar(){
+    alert('Hacer alguna otra cosa al guardar')
   }
 }

@@ -1,0 +1,40 @@
+
+ @if (!controlado) {
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    {{textoBoton}}
+  </button> 
+ }
+<!-- Modal -->
+<div  #modal  class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      @if ((controlado && tituloParametro) || (!controlado && titulo)) {
+        <div class="modal-header">
+          @if (!controlado && titulo) {
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{titulo}}</h1>
+          }
+          @if(controlado && tituloParametro) {
+            <h1 class="modal-title fs-5" id="exampleModalLabel">{{tituloParametro}}</h1>
+          }  
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+      }
+      <div class="modal-body">
+        @if (contenido) {
+          {{contenido}}
+        }
+        <ng-content />
+      </div>
+      <div class="modal-footer">
+        @if(!controlado){
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button> 
+        }@else {
+          <!-- Boton para controlar desde angular -->
+          <button (click)="closeModal()" type="button" class="btn btn-primary">Cerrar</button>
+        }
+        <button (click)="closeModalAndSave()"  type="button" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
