@@ -23,7 +23,8 @@
             #cantidadInput
             type="number" 
             [(ngModel)]="producto.cantidad" 
-            (ngModelChange)="actualizarCantidad(producto.id, cantidadInput.value)"
+            (keydown.enter)="actualizarCantidad(producto.id, cantidadInput.value)"
+            (blur)="actualizarCantidad(producto.id, cantidadInput.value)"
             min="0" 
             [attr.max]="producto.enStock" 
           />
