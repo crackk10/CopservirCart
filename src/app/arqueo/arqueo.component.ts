@@ -3,10 +3,11 @@ import { Component, inject, signal } from '@angular/core';
 import { ContabilidadService } from "../core/services/contabilidad.service";
 import { Contabilidad } from '../core/interfaces/req-contabilidad.interface';
 import { Factura } from '../core/interfaces/req-factura.interface';
+import { ThousandsPipe } from '../core/shared/pipes/thousandPipe.pipe';
 @Component({
   selector: 'app-arqueo',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ThousandsPipe],
   templateUrl: './arqueo.component.html',
   styles: ``
 })

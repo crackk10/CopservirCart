@@ -27,20 +27,20 @@
               @if (facturas(); as facturas) { 
                 <tr *ngFor="let factura of facturas" [attr.data-id]="factura.id">
                   <td>{{factura.id}}</td>
-                  <td>$ {{factura.total}}</td>
-                  <td>$ {{factura.total_descuento}}</td>
-                  <td>$ {{factura.total_iva}}</td>
-                  <td>$ {{factura.total_neto}}</td>
+                  <td>$ {{factura.total | thousandsPipe}}</td>
+                  <td>$ {{factura.total_descuento | thousandsPipe}}</td>
+                  <td>$ {{factura.total_iva | thousandsPipe}}</td>
+                  <td>$ {{factura.total_neto | thousandsPipe}}</td>
                 </tr>
               }
               </tbody>
               @if(total(); as contabilidad){
                 <tfoot>
                   <td>Totales</td>
-                  <td>$ {{contabilidad.total}}</td>
-                  <td>$ {{contabilidad.total_descuento}}</td>
-                  <td>$ {{contabilidad.total_iva}}</td>
-                  <td>$ {{contabilidad.total_neto}}</td>
+                  <td>$ {{contabilidad.total | thousandsPipe}}</td>
+                  <td>$ {{contabilidad.total_descuento | thousandsPipe}}</td>
+                  <td>$ {{contabilidad.total_iva | thousandsPipe}}</td>
+                  <td>$ {{contabilidad.total_neto | thousandsPipe}}</td>
                 </tfoot>
               }
             </table>

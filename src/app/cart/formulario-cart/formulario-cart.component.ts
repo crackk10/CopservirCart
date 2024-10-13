@@ -45,8 +45,8 @@ export class FormularioCartComponent  {
   switchModal : number = 0
 
   @ViewChild(ModalComponent) modal?:ModalComponent
-  openModal(titulo:string = '', contenido:string ='', numeroBoton : number){
-    this.modal?.openModal(titulo, contenido)
+  openModal(contenido:string ='',titulo:string = '',  numeroBoton : number){
+    this.modal?.openModal(contenido, titulo)
     this.switchModal = numeroBoton 
   }
   accionAlGuardar(guardo:boolean){

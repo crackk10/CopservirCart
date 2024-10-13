@@ -21,7 +21,7 @@ export class ModalComponent {
   tituloParametro : string = ''
   contenido : string = ''
 
-  openModal(tituloParametro:string = '', contenido:string = ''){
+  openModal( contenido:string = '',tituloParametro:string = '',){
     $(this.modalControlado?.nativeElement).modal('show') //la funcion modal es propia de bootstrap
     this.tituloParametro = tituloParametro
     this.contenido = contenido
@@ -44,8 +44,8 @@ export class ModalComponent {
   Acceder desde el padre, agregar comportamiento, controlar parametros
 
   @ViewChild(ModalComponent) modal?:ModalComponent
-  openModal(titulo:string = '', contenido:string =''){
-    this.modal?.openModal(titulo, contenido)
+  openModal( contenido:string ='',titulo:string = ''){
+    this.modal?.openModal(contenido,titulo)
   }
   accionAlGuardar(guardo:boolean){
     if (guardo) {
@@ -55,9 +55,9 @@ export class ModalComponent {
 
   en el HTML, si se pasa el primer parametro de openModal en limpio no muestra header
   <app-modal controlado (emmiter)=accionAlGuardar($event)>
-  <button (click)="openModal('Titulo contolado', 'Contenido')" type="button" class="btn btn-primary">NombreBoton</button>
+  <button (click)="openModal('Contenido','Titulo contolado')" type="button" class="btn btn-primary">NombreBoton</button>
 
- Para acceder de forma nativa 
+  Para acceder de forma nativa 
 
   accionAlGuardar(guardo:boolean){
     if (guardo) {

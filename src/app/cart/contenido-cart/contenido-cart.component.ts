@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { Producto } from '../../core/interfaces/req-producto.interface';
 import { FormsModule } from '@angular/forms';
 import { CalculadoraDePreciosService } from '../../core/services/calculadora-de-precios.service';
+import { ThousandsPipe } from '../../core/shared/pipes/thousandPipe.pipe';
 
 @Component({
   selector: 'app-contenido-cart',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ThousandsPipe],
   templateUrl: './contenido-cart.component.html',
   styles: ``
 })

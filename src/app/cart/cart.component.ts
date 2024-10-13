@@ -12,11 +12,13 @@ import { FacturaSinId } from "../core/interfaces/req-facturaSinId.interface";
 import { ArqueoComponent } from "../arqueo/arqueo.component";
 import { ProductoService } from "../core/services/producto.service";
 import { CalculadoraDePreciosService } from "../core/services/calculadora-de-precios.service";
+import { ToastrService } from "ngx-toastr";
+import { ThousandsPipe } from "../core/shared/pipes/thousandPipe.pipe";
 
 @Component({
   selector: "app-cart",
   standalone: true,
-  imports: [CommonModule, ContenidoCartComponent, FormularioCartComponent, HttpClientJsonpModule, ArqueoComponent],
+  imports: [CommonModule, ContenidoCartComponent, FormularioCartComponent, HttpClientJsonpModule, ArqueoComponent, ThousandsPipe],
   templateUrl: "./cart.component.html",
   styles: `.card-text {
     margin-bottom: 5px; /* Reduce el margen inferior de los párrafos */
@@ -44,7 +46,8 @@ export class CartComponent {
     private readonly calculadoraDePrecios : CalculadoraDePreciosService,
     private readonly facturacionService : FacturacionService,
     private readonly cartService : CartService,
-    private readonly productoService : ProductoService
+    private readonly productoService : ProductoService,
+    private readonly toastr : ToastrService
   ){
     this.cartService.productos$.subscribe({//cada vez que se agrega un producto al carrito
       next: (value) => {
@@ -60,9 +63,11 @@ export class CartComponent {
       next: (factura) => {
         this.cartService.vaciarCarrito()
         this.productos$ = this.productoService.getProductos()
+        this.toastr.success('Factura generada con éxito')
       },
       error: (error) => {
-        console.error(error);
+        this.toastr.error(error, 'Problemas al facturar!')
+        //console.error(error);
       }
     });
     

@@ -15,7 +15,7 @@
         @if ((data | async); as productos) { 
       <tr *ngFor="let producto of productos" [attr.data-id]="producto.id">
         <td>{{producto.nombre}}</td>
-        <td>{{producto.precio_base}}</td>
+        <td>{{producto.precio_base | thousandsPipe}}</td>
         <td>%{{producto.iva}}</td>
         <td>%{{producto.descuento}}</td>
         <td>
@@ -29,7 +29,7 @@
             [attr.max]="producto.enStock" 
           />
         </td>
-        <td>{{calcularTotal(producto)}}</td>
+        <td>{{calcularTotal(producto) | thousandsPipe}}</td>
         <td>{{producto.enStock}}</td>
         <td>
           <button class="btn btn-danger btn-sm" (click)="eliminarProducto(producto.id)">X</button>

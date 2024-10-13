@@ -12,19 +12,48 @@
     <div class="col-md-4">
       <div class="card">
         <div class="card-body">
-          <h5 class="card-title">Resumen</h5>
-          <p class="card-text">Fecha: {{datosFactura().fecha}}</p>
-          <p class="card-text">cliente: {{datosFactura().cliente}}</p>
-          
-          <p class="card-text">Forma de pago: {{datosFactura().tipo_pago}}</p>
-          <p class="card-text">Forma de entrega: {{datosFactura().tipo_entrega}}</p>
-
-          <p class="card-text">Total : {{totalVentaSinDescuento()}}</p>
-          <p class="card-text">Descuento: -{{totalDescuentoVenta()}}</p>
-          <p class="card-text">Total IVA: {{totalIvaVenta()}}</p>
-          <p class="card-text">Total neto: {{totalVenta()}}</p>
-          
-          <button class="btn btn-primary btn-block" (click)="facturar()" type="button">Pagar</button>
+          <table >
+            <thead>
+              <tr colspan="2"><h5 class="card-title">Resumen</h5></tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><p class="card-text">Fecha </p></td>
+              <td>{{datosFactura().fecha}}</td>
+            </tr>
+            <tr>
+              <td><p class="card-text">cliente:</p></td>
+              <td>{{datosFactura().cliente}}</td>
+            </tr>
+            <tr>
+              <td><p class="card-text">Forma de pago: </p></td>
+              <td>{{datosFactura().tipo_pago}}</td>
+            </tr>
+            <tr>
+              <td><p class="card-text">Forma de entrega: </p></td>
+              <td>{{datosFactura().tipo_entrega}}</td>
+            </tr>
+            <tr>
+              <td><p class="card-text">Total : </p></td>
+              <td>${{totalVentaSinDescuento() | thousandsPipe}}</td>
+            </tr>
+            <tr>
+              <td><p class="card-text">Descuento: </p></td>
+              <td>${{totalDescuentoVenta() | thousandsPipe}}</td>
+            </tr>
+            <tr>
+              <td><p class="card-text">Total IVA: </p></td>
+              <td>${{totalIvaVenta() | thousandsPipe}}</td>
+            </tr>
+            <tr>
+              <td><p class="card-text">Total neto: </p></td>
+              <td>${{totalVenta() | thousandsPipe}}</td>
+            </tr>
+            <tr>
+              <td colspan="2"><button class="btn btn-primary btn-block" (click)="facturar()" type="button">Pagar</button></td>
+            </tr>
+          </tbody>
+          </table>
         </div>
       </div>
     </div>
